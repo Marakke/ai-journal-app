@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 const getEntries = async () => {
   const user = await getUserByClerkID()
-  const data = await prisma.journalEntry.findMany({
+  const entries = await prisma.journalEntry.findMany({
     where: {
       userId: user.id,
     },
@@ -19,11 +19,9 @@ const getEntries = async () => {
     },
   })
 
-  await analyze(
-    'Create me a vue component that can be used to display a list of items'
-  )
+  await analyze('Add test entry here to trigger AI analysis')
 
-  return data
+  return entries
 }
 
 const JournalPage = async () => {
