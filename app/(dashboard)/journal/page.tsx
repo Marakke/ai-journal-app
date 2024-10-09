@@ -1,5 +1,6 @@
 import EntryCard from '@/components/EntryCard'
 import NewEntry from '@/components/NewEntry'
+import { analyze } from '@/utils/ai'
 import { getUserByClerkID } from '@/utils/auth'
 import { prisma } from '@/utils/db'
 import Link from 'next/link'
@@ -17,6 +18,10 @@ const getEntries = async () => {
       analysis: true,
     },
   })
+
+  await analyze(
+    'Create me a vue component that can be used to display a list of items'
+  )
 
   return data
 }
