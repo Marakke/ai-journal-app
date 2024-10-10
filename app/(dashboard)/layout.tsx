@@ -2,8 +2,8 @@ import { UserButton } from '@clerk/nextjs'
 import Link from 'next/link'
 
 const links = [
-  { name: 'Journals', href: '/journal' },
-  { name: 'History', href: '/history' },
+  { name: 'Home', href: '/' },
+  { name: 'Journal', href: '/journal' },
 ]
 
 const DashboardLayout = ({ children }) => {
@@ -11,13 +11,15 @@ const DashboardLayout = ({ children }) => {
     <div className="w-screen h-screen relative">
       <aside className="absolute left-0 top-0 h-full w-[200px] border-r border-black/10">
         <div className="px-4 my-4">
-          <span className="text-3xl">MOOD</span>
+          <span className="text-3xl">AI Journal</span>
         </div>
         <div>
           <ul className="px-4">
             {links.map((link) => (
               <li key={link.name} className="text-xl my-4">
-                <Link href={link.href}>{link.name}</Link>
+                <Link className="hover:underline" href={link.href}>
+                  {link.name}
+                </Link>
               </li>
             ))}
           </ul>

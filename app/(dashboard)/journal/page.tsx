@@ -14,12 +14,7 @@ const getEntries = async () => {
     orderBy: {
       createdAt: 'desc',
     },
-    include: {
-      analysis: true,
-    },
   })
-
-  await analyze('Add test entry here to trigger AI analysis')
 
   return entries
 }
