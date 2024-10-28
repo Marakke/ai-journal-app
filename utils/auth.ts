@@ -1,4 +1,4 @@
-import type { User } from '@clerk/nextjs/api'
+// import type { User } from '@clerk/nextjs/api'
 import { prisma } from './db'
 import { auth } from '@clerk/nextjs/server'
 
@@ -12,30 +12,4 @@ export const getUserByClerkID = async (select = { id: true }) => {
   })
 
   return user
-}
-
-export const syncNewUser = async (clerkUser: User) => {
-  const existingUser = await prisma.user.findUnique({
-    where: {
-      clerkId: clerkUser.id,
-    },
-  })
-
-  if (!existingUser) {
-    const email = clerkUser.emailAddresses[0].emailAddress
-    // const { subscriptionId, customerId } = await createAndSubNewCustomer(email)
-
-    await prisma.user.create({
-      data: {
-        clerkId: clerkUser.id,
-        email,
-        account: {
-          create: {
-            // stripeCustomerId: customerId,
-            // stripeSubscriptionId: subscriptionId,
-          },
-        },
-      },
-    })
-  }
 }
